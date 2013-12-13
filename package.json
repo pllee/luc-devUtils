@@ -1,5 +1,5 @@
 {
-  "name": "luc-devUtils",
+  "name": "luc-devutils",
   "version": "0.1.0",
   "description": "Performance and debugging utils",
   "main": "lib/index.js",
