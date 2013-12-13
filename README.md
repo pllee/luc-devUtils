@@ -1,7 +1,16 @@
+[![Luc](http://pllee.github.io/luc/pages/docsResources/luc.png)](https://github.com/pllee/luc) -devUtils
+====
+
+[![Build Status](https://secure.travis-ci.org/pllee/luc-devUtils.png)](http://travis-ci.org/pllee/luc)
+
+[![Selenium Test Status](https://saucelabs.com/browser-matrix/luc-devUtils.svg)](https://saucelabs.com/u/luc-devUtils)
+
+
 Luc Developer Utils
 ====
 
 Performance, debugging and other utilities that can help with JavaScript development.
+
 
 Node
 ====
@@ -11,7 +20,7 @@ Browser
 ====
 [Download](http://pllee.github.io/luc-devUtils/versions/luc-devUtils-0.1.0.zip) the latest zip or check out the hosted build files [luc-devUtils](http://pllee.github.io/luc-devUtils/build/luc-devUtils.js), [luc-devUtils-es5-shim](http://pllee.github.io/luc-devUtils/build/luc-devUtils-es5-shim.js).  Source maps come packaged with the non minified versions.
 
-Luc.devUtils.Watcher
+[Luc.devUtils.Watcher](http://pllee.github.io/luc-devUtils/pages/docs/#!/api/Luc.devUtils.Watcher)
 ===
 Cross browser break on change functionality.  THIS ONLY WORKS ON ES5 BROWSERS (more specifically ones that implement Object.defineProperty).  
 No errors will be thrown in older browsers.  <br>
@@ -103,7 +112,7 @@ There are also some static convenience methods so you can manage all of your Wat
 ```
 
 
-Luc.devUtils.Interceptor
+[Luc.devUtils.Interceptor](http://pllee.github.io/luc-devUtils/pages/docs/#!/api/Luc.devUtils.Interceptor)
 ===
 Intercepts methods on objects to add time info or console logs or functions that will get called before and after the intercepted method is called.  Info on functions can be obtained without putting log statements in your source code or libraries.  Time logs keep track of how many times a function has been called and how long it has run for.  When put on the prototype of a class this can be useful information to have without having to dig through and have the overhead of a profiler.  Functions can be used to add a quick breakpoint on a child class instead of doing a conditional breakpoint of:
 
@@ -158,7 +167,7 @@ interceptor.getReport() would output something like:
 }
 ```
 
-Luc.devUtils.Runner
+[Luc.devUtils.Runner](http://pllee.github.io/luc-devUtils/pages/docs/#!/api/Luc.devUtils.Runner)
 ===
 
 Runs a set of functions for n number of iterations and keeps time info on the set of functions.  This can be used for getting time comparisons. 
