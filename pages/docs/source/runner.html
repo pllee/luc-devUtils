@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">var Luc = require('luc'),
+    TimeTracker = require('./timeTracker');
+
+<span id='Luc-devUtils-Runner'>/**
+</span> * @class Luc.devUtils.Runner
+ * Runs a set of functions for &lt;b&gt;n&lt;/b&gt; number of iterations
+ * and keeps time info on the set of functions.
+    
+    var arr = [1,2 3],
+    runner = new Luc.devUtils.Runner({
+        log: true,
+        iterations: 10000,
+        functions: [{
+            fn: function() {
+                var a;
+                arr.forEach(function(value, index) {
+                    a = value + index;
+                });
+            },
+            name: 'nativeForEach'
+        }, {
+            fn: function() {
+                var a;
+                Luc.Array.each(arr, function(value, index) {
+                    a = value + index;
+                });
+            },
+            name: 'Luc Each'
+        }, {
+            fn: function() {
+                var a, i = 0,
+                    len = arr.length
+                for(; i &lt; len; ++i) {
+                    a = arr[i] + i;
+                }
+            },
+            name: 'forLoop'
+        }]
+    });
+
+    runner.run();
+    * would show console.time outputs to the console like:
+    
+    nativeForEach: 7.304ms
+    Luc Each: 8.032ms
+    forLoop: 0.796ms
+    
+    *after calling run 2 more times runner.getReport() would return something like:
+    
+    {
+        &quot;nativeForEach&quot;: {
+            &quot;iterationsRun&quot;: 30000,
+            &quot;totalTime&quot;: 24.921000011090655,
+            &quot;average&quot;: 0.0008307000003696885
+        },
+        &quot;Luc Each&quot;: {
+            &quot;iterationsRun&quot;: 30000,
+            &quot;totalTime&quot;: 14.927000003808644,
+            &quot;average&quot;: 0.0004975666667936215
+        },
+        &quot;forLoop&quot;: {
+            &quot;iterationsRun&quot;: 30000,
+            &quot;totalTime&quot;: 1.0809999948833138,
+            &quot;average&quot;: 0.00003603333316277712
+        }
+    }
+ */
+module.exports = Luc.define({
+    $mixins: TimeTracker,
+<span id='Luc-devUtils-Runner-cfg-iterations'>    /**
+</span>     * @cfg {Number} iterations
+     * The number of iterations for the function(s) to run.
+     */
+    iterations: 10,
+
+<span id='Luc-devUtils-Runner-cfg-profile'>    /**
+</span>     * @cfg {Boolean} profile 
+     * Set to true to invoke profiling if supported by the browser/node.
+     */
+    profile: false,
+
+<span id='Luc-devUtils-Runner-cfg-functions'>    /**
+</span>     * @cfg {Function/ Function[]/ Object/ Object[]} functions (required)
+     * Functions can either be functions or objects in the form of :
+     * @cfg {String}  [functions.name] the identifier name for the function
+     * @cfg {Function} functions.fn (required) the function to call
+     
+     functions: {
+            fn: function() {
+                var a,
+                    arr = [1,2,3];
+
+                arr.forEach(function(value, index) {
+                    a = value + index;
+                });
+            },
+            name: 'forEach'
+        }
+    *this is also a valid config:
+     functions: [function(){return 1;}, function(){return 2;}]
+     */
+<span id='Luc-devUtils-Runner-cfg-log'>    /**
+</span>     * @cfg {Boolean} log
+     * true to output console.time info
+     */
+    log: false,
+
+<span id='Luc-devUtils-Runner-method-run'>    /**
+</span>    * @method run
+    * Runs the configured functions for the configured amount
+    * of iterations.  If log is true it will output console.time info
+    */
+    run: function() {
+        Luc.Array.each(this.functions, function(functionOrObj, index) {
+            var name = functionOrObj.name,
+                fn;
+
+            if (name) {
+                fn = functionOrObj.fn || functionOrObj;
+            } else {
+                name = 'index:' + index;
+                fn = functionOrObj;
+            }
+
+            this._runFunction(fn, name);
+
+        }, this);
+    },
+
+    _runFunction: function(fn, name) {
+        this.stampStart(name);
+        this._runFunctionForIterations(fn);
+        this.stampEnd(name);
+    },
+
+    _runFunctionForIterations: function(fn) {
+        var iterations = this.iterations,
+            i = 0;
+        for (; i &lt; iterations; ++i) {
+            fn();
+        }
+    },
+
+<span id='Luc-devUtils-Runner-method-setIterations'>    /**
+</span>     * Set the amount of iterations to run.
+     * @param {Number} iterations
+     */
+    setIterations: function(iterations) {
+        this.iterations = iterations;
+    },
+
+<span id='Luc-devUtils-Runner-method-setLog'>    /**
+</span>     * Set log to true to show console log outputs.
+     * @param {Boolean} log
+     */
+    setLog: function(log) {
+        this.log = log;
+    },
+
+<span id='Luc-devUtils-Runner-method-setProfile'>    /**
+</span>     * Set profile to true keep profiling information.
+     * @param {Boolean} log
+     */
+    setProfile: function(value) {
+        this.profile = value;
+    },
+
+
+    //@implement
+    _getIterationsToAdd: function() {
+        return this.iterations;
+    }
+
+<span id='Luc-devUtils-Runner-method-getReport'>    /**
+</span>     * @method getReport
+     * Returns the time info for functions the
+     * run, they are keyed off by function name.  The time
+     * info will may vary slightly from the console.time output.
+     * @return {Object}
+     */
+});
+</pre>
+</body>
+</html>
