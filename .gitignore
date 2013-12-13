@@ -1,0 +1,7 @@
+node_modules/
+pages/*
+!pages/testRunner
+!pages/docsResources
+gruntTasks/generatedDocs/*
+lib-cov/
+sauce_connect.*

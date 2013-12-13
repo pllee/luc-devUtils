@@ -1,0 +1,30 @@
+{
+  "name": "luc-devUtils",
+  "version": "0.1.0",
+  "description": "Performance and debugging utils",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Patrick Lee",
+  "license": "MIT",
+  "dependencies": {
+    "luc": "*",
+    "counsell": "~0.1.0"
+  },
+  "devDependencies": {
+    "grunt-exec": "~0.4.2",
+    "grunt-contrib-uglify": "~0.2.7",
+    "browserify": "2.36.0",
+    "grunt-cli": "~0.1.11",
+    "grunt-devtools": "0.2.1",
+    "expect.js": "~0.2.0",
+    "mocha": "~1.15.1",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-saucelabs": "~4.1.2",
+    "sinon": "~1.7.3",
+    "es5-shim-sham": "*",
+    "adm-zip": "~0.4.3",
+    "wrench": "~1.5.4"
+  }
+}
