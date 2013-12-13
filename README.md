@@ -1,7 +1,7 @@
 [![Luc](http://pllee.github.io/luc/pages/docsResources/luc.png)](https://github.com/pllee/luc) -devUtils
 ====
 
-[![Build Status](https://secure.travis-ci.org/pllee/luc-devUtils.png)](http://travis-ci.org/pllee/luc)
+[![Build Status](https://secure.travis-ci.org/pllee/luc-devUtils.png)](http://travis-ci.org/pllee/luc-devUtils)
 
 [![Selenium Test Status](https://saucelabs.com/browser-matrix/luc-devUtils.svg)](https://saucelabs.com/u/luc-devUtils)
 
