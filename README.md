@@ -14,7 +14,7 @@ Performance, debugging and other utilities that can help with JavaScript develop
 
 Node
 ====
-npm install luc-devUtils
+npm install luc-devutils
 
 Browser
 ====
