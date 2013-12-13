@@ -9,7 +9,7 @@ npm install luc-devUtils
 
 Browser
 ====
-[Download](http://pllee.github.io/luc-devUtils/versions/luc-devUils-latest.zip) the latest zip or check out the hosted build files [luc-devUtils](http://pllee.github.io/luc/build/luc-devUtils.js), [luc-devUtils-es5-shim](http://pllee.github.io/luc-devUtils/build/luc-devUtils-es5-shim.js).  Source maps come packaged with the non minified versions.
+[Download](http://pllee.github.io/luc-devUtils/versions/luc-devUtils-0.1.0.zip) the latest zip or check out the hosted build files [luc-devUtils](http://pllee.github.io/luc-devUtils/build/luc-devUtils.js), [luc-devUtils-es5-shim](http://pllee.github.io/luc-devUtils/build/luc-devUtils-es5-shim.js).  Source maps come packaged with the non minified versions.
 
 Luc.devUtils.Watcher
 ===

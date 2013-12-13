@@ -3,11 +3,17 @@
   "version": "0.1.0",
   "description": "Performance and debugging utils",
   "main": "lib/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": "Patrick Lee <patrick.lorian.lee@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pllee/luc-devUtils.git"
   },
-  "author": "Patrick Lee",
   "license": "MIT",
+  "keywords": [
+    "debugging",
+    "utils",
+    "profiling"
+  ],
   "dependencies": {
     "luc": "*",
     "counsell": "~0.1.0"
@@ -26,5 +32,8 @@
     "es5-shim-sham": "*",
     "adm-zip": "~0.4.3",
     "wrench": "~1.5.4"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/grunt test"
   }
 }
